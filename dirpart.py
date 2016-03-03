@@ -10,6 +10,18 @@
 
 import argparse
 import os
+from os import path
+
+def discover_files(dir):
+    for f in os.listdir(dir):
+        if path.isfile(os.path.join(dir, f)):
+            yield f
+
+def part_files(dir):
+    files = discover_files(dir)
+
+    for f in files:
+        print(f)
 
 def main():
     parser = argparse.ArgumentParser(
@@ -18,9 +30,11 @@ def main():
     parser.add_argument("dir", metavar="[DIR]", help="The directory to partition")
     args = parser.parse_args()
 
-    if not os.path.isdir(args.dir):
+    if not path.isdir(args.dir):
         print("'{}' is not a valid directory".format(args.dir))
         return 1
+
+    return part_files(args.dir)
 
 if __name__ == "__main__":
     main()
