@@ -9,13 +9,19 @@
 # though
 
 import argparse
+import os
 
 def main():
     parser = argparse.ArgumentParser(
         description="Partition files into A-Z sub directories")
 
-    parser.add_argument("[DIR]", help="The directory to partition")
+    parser.add_argument("dir", metavar="[DIR]", help="The directory to partition")
     args = parser.parse_args()
+
+    if not os.path.isdir(args.dir):
+        print("'{}' is not a valid directory".format(args.dir))
+        return 1
 
 if __name__ == "__main__":
     main()
+
