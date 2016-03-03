@@ -12,16 +12,7 @@ import argparse
 import os
 from os import path
 
-def discover_files(dir):
-    for f in os.listdir(dir):
-        if path.isfile(os.path.join(dir, f)):
-            yield f
-
-def part_files(dir):
-    files = discover_files(dir)
-
-    for f in files:
-        print(f)
+from dirpart import part
 
 def main():
     parser = argparse.ArgumentParser(
@@ -34,7 +25,7 @@ def main():
         print("'{}' is not a valid directory".format(args.dir))
         return 1
 
-    return part_files(args.dir)
+    return part.part_files(args.dir)
 
 if __name__ == "__main__":
     main()
