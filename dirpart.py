@@ -27,7 +27,6 @@ def main():
         print("'{}' is not a valid directory".format(args.dir))
         return 1
 
-    print(os.getcwd())
     output = args.out if args.out else os.getcwd()
 
     return part.part_files(args.dir, output)
