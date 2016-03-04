@@ -32,7 +32,7 @@ def place(fname, action, args):
     action(path.join(indir, fname), path.join(full_path, fname))
 
 def part_files(**args):
-   if not "special" in args:
+    if not "special" in args:
         args["special"] = _DEFAULT_MISC
 
     files = filter(
