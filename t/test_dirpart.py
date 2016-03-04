@@ -41,7 +41,7 @@ class TestDirPart(unittest.TestCase):
         self._put_file("banana")
         p = self._test_path
 
-        part.part_files(p)
+        part.part_files(p, p)
 
         self.assertTrue(path.isdir(
             path.join(p, "A")))
@@ -53,7 +53,7 @@ class TestDirPart(unittest.TestCase):
         self._put_file("banana")
         p = self._test_path
 
-        part.part_files(p)
+        part.part_files(p, p)
 
         # Make sure the files got copies
         self.assertTrue(path.isfile(
@@ -76,6 +76,20 @@ class TestDirPart(unittest.TestCase):
         part.part_files(ip, op)
 
         self.assertTrue(path.exists(op))
+
+    def test_part_files_copies_files_to_output_dir(self):
+        self._put_file("abc")
+        self._put_file("bcd")
+        ip = self._test_path
+        op = path.join(ip, "out")
+
+        part.part_files(ip, op)
+
+        self.assertTrue(path.isfile(
+            path.join(op, "A", "abc")))
+        self.assertTrue(path.isfile(
+            path.join(op, "B", "bcd")))
+
 
 if __name__ == '__main__':
     unittest.main()

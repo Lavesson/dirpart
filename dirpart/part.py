@@ -16,16 +16,13 @@ def place(indir, outdir, fname):
     if not path.exists(outdir):
         os.makedirs(outdir)
 
-    full_path = path.join(indir, sdir_name)
+    full_path = path.join(outdir, sdir_name)
 
     if not path.exists(full_path):
         os.makedirs(full_path)
         shutil.copy2(path.join(indir, fname), path.join(full_path, fname))
 
-def part_files(indir, outdir=""):
-    if not outdir:
-        outdir = os.getcwd()
-
+def part_files(indir, outdir):
     files = discover_files(indir)
 
     for f in files:
