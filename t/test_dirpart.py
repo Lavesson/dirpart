@@ -109,6 +109,17 @@ class TestDirPart(unittest.TestCase):
         self.assertFalse(path.isfile(
             path.join(p, "banana")))
 
+    def test_part_files_multiple_files_copied(self):
+        self._put_file("abc")
+        self._put_file("abd")
+        p = self._test_path
+
+        part.part_files(p, p)
+
+        self.assertTrue(path.isfile(
+            path.join(p, "A", "abc")))
+        self.assertTrue(path.isfile(
+            path.join(p, "A", "abd")))
 
 if __name__ == '__main__':
     unittest.main()

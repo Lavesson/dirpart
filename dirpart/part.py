@@ -20,7 +20,8 @@ def place(indir, outdir, fname, action):
 
     if not path.exists(full_path):
         os.makedirs(full_path)
-        action(path.join(indir, fname), path.join(full_path, fname))
+
+    action(path.join(indir, fname), path.join(full_path, fname))
 
 def part_files(indir, outdir, move=False):
     files = discover_files(indir)
