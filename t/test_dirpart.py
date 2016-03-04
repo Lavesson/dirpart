@@ -47,6 +47,25 @@ class TestDirPart(unittest.TestCase):
         self.assertTrue(path.isdir(
             path.join(p, "B")))
 
+    def test_part_files_copies_files(self):
+        self._put_file("a file")
+        self._put_file("banana")
+        p = self._test_path
+        part.part_files(p)
+
+        # Make sure the files got copies
+        self.assertTrue(path.isfile(
+            path.join(p, "A", "a file")))
+
+        self.assertTrue(path.isfile(
+            path.join(p, "B", "banana")))
+
+        # ... And not moved
+        self.assertTrue(path.isfile(
+            path.join(p, "a file")))
+
+        self.assertTrue(path.isfile(
+            path.join(p, "banana")))
 
 if __name__ == '__main__':
     unittest.main()

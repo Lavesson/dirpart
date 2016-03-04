@@ -1,6 +1,8 @@
 # Author: Eric Lavesson
 
 import os
+import shutil
+
 from os import path
 
 def discover_files(dir):
@@ -14,7 +16,7 @@ def place(dir, fname):
 
     if not path.exists(full_path):
         os.makedirs(full_path)
-        print("creating {}".format(full_path))
+        shutil.copy2(path.join(dir, fname), path.join(full_path, fname))
 
 def part_files(dir):
     files = discover_files(dir)
