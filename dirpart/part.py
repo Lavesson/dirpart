@@ -32,19 +32,8 @@ def place(fname, action, args):
     action(path.join(indir, fname), path.join(full_path, fname))
 
 def part_files(**args):
-    # These are basically only there so that I don't have to
-    # repeat them in ever test case. Maybe it's actually worth
-    # doing that though, because I'm really just repeating
-    # things that are being set from the main script anyway
-
-    if not "pattern" in args:
-        args["pattern"] = ""
-
-    if not "special" in args:
+   if not "special" in args:
         args["special"] = _DEFAULT_MISC
-
-    if not "outdir" in args:
-        args["outdir"] = "."
 
     files = filter(
         lambda f: re.match(args["pattern"], f),
