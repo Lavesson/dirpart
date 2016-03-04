@@ -133,5 +133,17 @@ class TestDirPart(unittest.TestCase):
         self.assertFalse(path.exists(
             path.join(p, "1", "123")))
 
+    def test_part_files_handles_special_folders(self):
+        self._put_file(".a_file")
+        self._put_file("..a_file")
+        p = self._test_path
+
+        part.part_files(p, p)
+
+        self.assertTrue(path.isfile(
+            path.join(p, "!misc", ".a_file")))
+        self.assertTrue(path.isfile(
+            path.join(p, "!misc", "..a_file")))
+
 if __name__ == '__main__':
     unittest.main()
