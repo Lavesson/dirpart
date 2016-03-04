@@ -4,6 +4,7 @@ import os
 import shutil
 
 from os import path
+import re
 
 def discover_files(dir):
     for f in os.listdir(dir):
@@ -23,8 +24,8 @@ def place(indir, outdir, fname, action):
 
     action(path.join(indir, fname), path.join(full_path, fname))
 
-def part_files(indir, outdir, move=False):
-    files = discover_files(indir)
+def part_files(indir, outdir, move=False, pattern=""):
+    files = filter(lambda f: re.match(pattern, f), discover_files(indir))
 
     action = \
         (lambda infile, outfile: shutil.copy2(infile, outfile)) \

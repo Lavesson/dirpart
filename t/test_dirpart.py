@@ -121,5 +121,17 @@ class TestDirPart(unittest.TestCase):
         self.assertTrue(path.isfile(
             path.join(p, "A", "abd")))
 
+    def test_part_files_uses_regexp(self):
+        self._put_file("123")
+        self._put_file("abc")
+        p = self._test_path
+
+        part.part_files(p, p, pattern="[A-z]")
+
+        self.assertTrue(path.isfile(
+            path.join(p, "A", "abc")))
+        self.assertFalse(path.exists(
+            path.join(p, "1", "123")))
+
 if __name__ == '__main__':
     unittest.main()
