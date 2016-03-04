@@ -41,7 +41,9 @@ class TestDirPart(unittest.TestCase):
         self._put_file("banana")
         p = self._test_path
 
-        part.part_files(p, p)
+        part.part_files(
+            indir  = p,
+            outdir = p)
 
         self.assertTrue(path.isdir(
             path.join(p, "A")))
@@ -53,7 +55,9 @@ class TestDirPart(unittest.TestCase):
         self._put_file("banana")
         p = self._test_path
 
-        part.part_files(p, p)
+        part.part_files(
+            indir  = p,
+            outdir = p)
 
         # Make sure the files got copies
         self.assertTrue(path.isfile(
@@ -73,7 +77,9 @@ class TestDirPart(unittest.TestCase):
         ip = self._test_path
         op = path.join(ip, "out")
 
-        part.part_files(ip, op)
+        part.part_files(
+            indir  = ip,
+            outdir = op)
 
         self.assertTrue(path.exists(op))
 
@@ -83,7 +89,9 @@ class TestDirPart(unittest.TestCase):
         ip = self._test_path
         op = path.join(ip, "out")
 
-        part.part_files(ip, op)
+        part.part_files(
+            indir  = ip,
+            outdir = op)
 
         self.assertTrue(path.isfile(
             path.join(op, "A", "abc")))
@@ -95,7 +103,10 @@ class TestDirPart(unittest.TestCase):
         self._put_file("banana")
         p = self._test_path
 
-        part.part_files(p, p, move=True)
+        part.part_files(
+            indir  = p,
+            outdir = p,
+            move   = True)
 
         # Make sure the files got moved
         self.assertTrue(path.isfile(
@@ -114,7 +125,9 @@ class TestDirPart(unittest.TestCase):
         self._put_file("abd")
         p = self._test_path
 
-        part.part_files(p, p)
+        part.part_files(
+            indir  = p,
+            outdir = p)
 
         self.assertTrue(path.isfile(
             path.join(p, "A", "abc")))
@@ -126,7 +139,10 @@ class TestDirPart(unittest.TestCase):
         self._put_file("abc")
         p = self._test_path
 
-        part.part_files(p, p, pattern="[A-z]")
+        part.part_files(
+            indir   = p,
+            outdir  = p,
+            pattern = "[A-z]")
 
         self.assertTrue(path.isfile(
             path.join(p, "A", "abc")))
@@ -138,12 +154,26 @@ class TestDirPart(unittest.TestCase):
         self._put_file("..a_file")
         p = self._test_path
 
-        part.part_files(p, p)
+        part.part_files(
+            indir  = p,
+            outdir = p)
 
         self.assertTrue(path.isfile(
             path.join(p, "!misc", ".a_file")))
         self.assertTrue(path.isfile(
             path.join(p, "!misc", "..a_file")))
+
+    def test_part_files_can_change_special_folder(self):
+        self._put_file(".a_file")
+        p = self._test_path
+
+        part.part_files(
+            indir   = p,
+            outdir  = p,
+            special = 'special')
+
+        self.assertTrue(path.isfile(
+            path.join(p, "special", ".a_file")))
 
 if __name__ == '__main__':
     unittest.main()

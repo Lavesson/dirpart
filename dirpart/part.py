@@ -13,7 +13,10 @@ def discover_files(dir):
         if path.isfile(path.join(dir, f)):
             yield f
 
-def place(indir, outdir, fname, action):
+def place(fname, action, args):
+    outdir = args["outdir"]
+    indir = args["indir"]
+
     sdir_name = fname[:1].upper()
     sdir_name = sdir_name if not \
         re.match("^\.", sdir_name) else _DEFAULT_MISC
@@ -28,16 +31,26 @@ def place(indir, outdir, fname, action):
 
     action(path.join(indir, fname), path.join(full_path, fname))
 
-def part_files(indir, outdir, move=False, pattern=""):
+def part_files(**args):
+    if not "pattern" in args:
+        args["pattern"] = ""
+
+    if not "special" in args:
+        args["special"] = _DEFAULT_MISC
+
+    if not "outdir" in args:
+        args["outdir"] = "."
+
     files = filter(
-        lambda f: re.match(pattern, f), discover_files(indir))
+        lambda f: re.match(args["pattern"], f),
+        discover_files(args["indir"]))
 
     action = \
         (lambda infile, outfile: shutil.copy2(infile, outfile)) \
-            if not move else \
+            if not "move" in args or not args["move"] else \
         (lambda infile, outfile: os.rename(infile, outfile))
 
     for f in files:
-        place(indir, outdir, f, action)
+        place(f, action, args)
 
 
