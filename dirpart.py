@@ -41,9 +41,9 @@ def main():
     output = args.out if args.out else os.getcwd()
 
     return part.part_files(
-        indir   = args.dir,
-        outdir  = output,
-        move    = args.move,
+        indir   = args.dir or ".",
+        outdir  = output or ".",
+        move    = args.move or False,
         pattern = args.regexp or "")
 
 if __name__ == "__main__":
