@@ -19,7 +19,7 @@ def place(fname, action, args):
 
     sdir_name = fname[:1].upper()
     sdir_name = sdir_name if not \
-        re.match("^\.", sdir_name) else _DEFAULT_MISC
+        re.match("^\.", sdir_name) else args["special"]
 
     if not path.exists(outdir):
         os.makedirs(outdir)
