@@ -10,7 +10,7 @@ def discover_files(dir):
         if path.isfile(path.join(dir, f)):
             yield f
 
-def place(indir, outdir, fname):
+def place(indir, outdir, fname, action):
     sdir_name = fname[:1].upper()
 
     if not path.exists(outdir):
@@ -20,12 +20,16 @@ def place(indir, outdir, fname):
 
     if not path.exists(full_path):
         os.makedirs(full_path)
-        shutil.copy2(path.join(indir, fname), path.join(full_path, fname))
+        action(path.join(indir, fname), path.join(full_path, fname))
 
-def part_files(indir, outdir):
+def part_files(indir, outdir, move=False):
     files = discover_files(indir)
 
+    action = \
+        (lambda infile, outfile: shutil.copy2(infile, outfile)) if not move else \
+        (lambda infile, outfile: os.rename(infile, outfile))
+
     for f in files:
-        place(indir, outdir, f)
+        place(indir, outdir, f, action)
 
 

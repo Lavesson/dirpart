@@ -90,6 +90,25 @@ class TestDirPart(unittest.TestCase):
         self.assertTrue(path.isfile(
             path.join(op, "B", "bcd")))
 
+    def test_part_files_moves_when_specified(self):
+        self._put_file("a file")
+        self._put_file("banana")
+        p = self._test_path
+
+        part.part_files(p, p, move=True)
+
+        # Make sure the files got moved
+        self.assertTrue(path.isfile(
+            path.join(p, "A", "a file")))
+        self.assertTrue(path.isfile(
+            path.join(p, "B", "banana")))
+
+        # ... And not copied
+        self.assertFalse(path.isfile(
+            path.join(p, "a file")))
+        self.assertFalse(path.isfile(
+            path.join(p, "banana")))
+
 
 if __name__ == '__main__':
     unittest.main()
