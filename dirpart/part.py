@@ -27,7 +27,8 @@ def part_files(indir, outdir, move=False):
     files = discover_files(indir)
 
     action = \
-        (lambda infile, outfile: shutil.copy2(infile, outfile)) if not move else \
+        (lambda infile, outfile: shutil.copy2(infile, outfile)) \
+            if not move else \
         (lambda infile, outfile: os.rename(infile, outfile))
 
     for f in files:
