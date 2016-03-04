@@ -24,7 +24,7 @@ def place(indir, outdir, fname):
 
 def part_files(indir, outdir=""):
     if not outdir:
-        outdir = indir
+        outdir = os.getcwd()
 
     files = discover_files(indir)
 

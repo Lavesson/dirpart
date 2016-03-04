@@ -16,16 +16,21 @@ from dirpart import part
 
 def main():
     parser = argparse.ArgumentParser(
+        prog="dirpart",
         description="Partition files into A-Z sub directories")
 
-    parser.add_argument("dir", metavar="[DIR]", help="The directory to partition")
+    parser.add_argument("dir", metavar="[in]", help="The directory to partition")
+    parser.add_argument("-o", "--out", metavar="[out]", help="Output dir. Defaults to current folder")
     args = parser.parse_args()
 
     if not path.isdir(args.dir):
         print("'{}' is not a valid directory".format(args.dir))
         return 1
 
-    return part.part_files(args.dir)
+    print(os.getcwd())
+    output = args.out if args.out else os.getcwd()
+
+    return part.part_files(args.dir, output)
 
 if __name__ == "__main__":
     main()
