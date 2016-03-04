@@ -25,7 +25,8 @@ def place(indir, outdir, fname, action):
     action(path.join(indir, fname), path.join(full_path, fname))
 
 def part_files(indir, outdir, move=False, pattern=""):
-    files = filter(lambda f: re.match(pattern, f), discover_files(indir))
+    files = filter(
+        lambda f: re.match(pattern, f), discover_files(indir))
 
     action = \
         (lambda infile, outfile: shutil.copy2(infile, outfile)) \

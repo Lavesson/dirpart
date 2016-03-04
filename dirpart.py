@@ -19,10 +19,19 @@ def main():
         prog="dirpart",
         description="Partition files into A-Z sub directories")
 
-    parser.add_argument("dir", metavar="[in]", help="The directory to partition")
-    parser.add_argument("-o", "--out", metavar="[out]", help="Output dir. Defaults to current folder")
-    parser.add_argument("-m", "--move", action="store_true", help="Move files instead of copying")
-    parser.add_argument("-e", "--regexp", metavar="[pattern]", help="Apply to files matching the regex only")
+    parser.add_argument(
+        "dir", metavar="[in]",
+        help="The directory to partition")
+    parser.add_argument(
+        "-o", "--out", metavar="[out]",
+        help="Output dir. Defaults to current folder")
+    parser.add_argument(
+        "-m", "--move", action="store_true",
+        help="Move files instead of copying")
+    parser.add_argument(
+        "-e", "--regexp", metavar="[pattern]",
+        help="Apply to files matching the regex only")
+
     args = parser.parse_args()
 
     if not path.isdir(args.dir):
