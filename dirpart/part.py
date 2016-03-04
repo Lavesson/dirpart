@@ -8,7 +8,7 @@ def discover_files(dir):
         if path.isfile(path.join(dir, f)):
             yield f
 
-def move(dir, fname):
+def place(dir, fname):
     sdir_name = fname[:1].upper()
     full_path = path.join(dir, sdir_name)
 
@@ -20,6 +20,6 @@ def part_files(dir):
     files = discover_files(dir)
 
     for f in files:
-        move(dir, f)
+        place(dir, f)
 
 

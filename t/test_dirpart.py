@@ -35,5 +35,18 @@ class TestDirPart(unittest.TestCase):
         self.assertEqual("file1", result[0])
         self.assertEqual("file2", result[1])
 
+    def test_part_files_creates_directories(self):
+        self._put_file("a file")
+        self._put_file("banana")
+        p = self._test_path
+        part.part_files(p)
+
+        self.assertTrue(path.isdir(
+            path.join(p, "A")))
+
+        self.assertTrue(path.isdir(
+            path.join(p, "B")))
+
+
 if __name__ == '__main__':
     unittest.main()
