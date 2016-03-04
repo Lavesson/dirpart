@@ -10,18 +10,25 @@ def discover_files(dir):
         if path.isfile(path.join(dir, f)):
             yield f
 
-def place(dir, fname):
+def place(indir, outdir, fname):
     sdir_name = fname[:1].upper()
-    full_path = path.join(dir, sdir_name)
+
+    if not path.exists(outdir):
+        os.makedirs(outdir)
+
+    full_path = path.join(indir, sdir_name)
 
     if not path.exists(full_path):
         os.makedirs(full_path)
-        shutil.copy2(path.join(dir, fname), path.join(full_path, fname))
+        shutil.copy2(path.join(indir, fname), path.join(full_path, fname))
 
-def part_files(dir):
-    files = discover_files(dir)
+def part_files(indir, outdir=""):
+    if not outdir:
+        outdir = indir
+
+    files = discover_files(indir)
 
     for f in files:
-        place(dir, f)
+        place(indir, outdir, f)
 
 

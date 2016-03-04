@@ -29,6 +29,7 @@ class TestDirPart(unittest.TestCase):
     def test_discover_files(self):
         self._put_file("file1")
         self._put_file("file2")
+
         result = list(part.discover_files(self._test_path))
 
         self.assertEqual(len(result), 2)
@@ -39,11 +40,11 @@ class TestDirPart(unittest.TestCase):
         self._put_file("a file")
         self._put_file("banana")
         p = self._test_path
+
         part.part_files(p)
 
         self.assertTrue(path.isdir(
             path.join(p, "A")))
-
         self.assertTrue(path.isdir(
             path.join(p, "B")))
 
@@ -51,21 +52,30 @@ class TestDirPart(unittest.TestCase):
         self._put_file("a file")
         self._put_file("banana")
         p = self._test_path
+
         part.part_files(p)
 
         # Make sure the files got copies
         self.assertTrue(path.isfile(
             path.join(p, "A", "a file")))
-
         self.assertTrue(path.isfile(
             path.join(p, "B", "banana")))
 
         # ... And not moved
         self.assertTrue(path.isfile(
             path.join(p, "a file")))
-
         self.assertTrue(path.isfile(
             path.join(p, "banana")))
+
+    def test_part_files_creates_output_dir(self):
+        self._put_file("abc")
+        self._put_file("bcd")
+        ip = self._test_path
+        op = path.join(ip, "out")
+
+        part.part_files(ip, op)
+
+        self.assertTrue(path.exists(op))
 
 if __name__ == '__main__':
     unittest.main()
