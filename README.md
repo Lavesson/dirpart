@@ -32,7 +32,7 @@ of NES roms for my Everdrive n8.
 * Clone/download/whatever and make sure Python 2.7 is installed
 * Either use the command directly, or symlink:
 
-    $ ln -s /path/to/dirpart.py /usr/bin/dirpart
+        $ ln -s /path/to/dirpart.py /usr/bin/dirpart
 
 ## Running tests
 
