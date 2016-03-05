@@ -1,8 +1,9 @@
 ## What's this?
 
-Just a small set of python files to copy/move files into named subdirs.
-I initially created this one solely because I needed to grab a bunch
-of NES roms for my Everdrive n8.
+Just a small set of python files to copy/move files into named subdirs
+released under the zlib/png license. I initially created this one solely
+because I needed to grab a bunch of NES roms for my Everdrive n8 and
+move them into subfolders 1-8 and A-Z.
 
 ## How does it work?
 
