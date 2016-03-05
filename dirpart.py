@@ -31,6 +31,10 @@ def main():
     parser.add_argument(
         "-e", "--regexp", metavar="[pattern]",
         help="Apply to files matching the regex only")
+    parser.add_argument(
+        "-s", "--special", metavar="[folder]",
+        help="Use a special folder to put files starting with" \
+             "one or more dots. Defaults to '!misc'")
 
     args = parser.parse_args()
 
@@ -44,7 +48,8 @@ def main():
         indir   = args.dir or ".",
         outdir  = output or ".",
         move    = args.move or False,
-        pattern = args.regexp or "")
+        pattern = args.regexp or "",
+        special = args.special or "")
 
 if __name__ == "__main__":
     main()
