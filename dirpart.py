@@ -35,6 +35,10 @@ def main():
         "-s", "--special", metavar="[folder]",
         help="Use a special folder to put files starting with" \
              "one or more dots. Defaults to '!misc'")
+    parser.add_argument(
+        "--max", metavar="[max]",
+        help="Put no more than [max] files per dir, naming " \
+             "consecutive dirs by numbering them")
 
     args = parser.parse_args()
 
@@ -49,7 +53,8 @@ def main():
         outdir  = output or ".",
         move    = args.move or False,
         pattern = args.regexp or "",
-        special = args.special or "")
+        special = args.special or "",
+        maxfiles= args.max or -1)
 
 if __name__ == "__main__":
     main()

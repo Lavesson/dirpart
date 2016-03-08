@@ -185,5 +185,25 @@ class TestDirPart(unittest.TestCase):
         self.assertTrue(path.isfile(
             path.join(p, "special", ".a_file")))
 
+    def test_part_files_respects_max_files(self):
+        self._put_file("a1")
+        self._put_file("a2")
+        self._put_file("a3")
+        self._put_file("b1")
+        p = self._test_path
+
+        part.part_files(
+            indir    = p,
+            outdir   = p,
+            pattern  = "",
+            maxfiles = 2)
+
+        self.assertTrue(path.isfile(
+            path.join(p, "A", "a1")))
+        self.assertTrue(path.isfile(
+            path.join(p, "A", "a2")))
+        self.assertTrue(path.isfile(
+            path.join(p, "A1", "a3")))
+
 if __name__ == '__main__':
     unittest.main()
