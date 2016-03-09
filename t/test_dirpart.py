@@ -17,7 +17,7 @@ class TestDirPart(unittest.TestCase):
     def _put_file(self, f):
         # Create an empty file with the given name
         full = path.join(self._test_path, f)
-        os.mknod(full)
+        open(full, 'a')
 
     def setUp(self):
         # Delete the test-data folder
