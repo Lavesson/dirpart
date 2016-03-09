@@ -27,7 +27,7 @@ move them into subfolders 1-8 and A-Z.
 
     $ dirpart . -o out/ --regexp='...' # Only apply to files matching
                                        # the given regular expression
-                                       
+
     $ dirpart . -o out/ --max=254      # Max 254 files per directory
                                        # Everything else goes into consecutive
                                        # folders (such as A, A1, A2 etc.)
