@@ -17,7 +17,7 @@ from dirpart import part
 def main():
     parser = argparse.ArgumentParser(
         prog="dirpart",
-        description="Partition files into A-Z sub directories")
+        description="Partition files into sub directories")
 
     parser.add_argument(
         "dir", metavar="[in]",
