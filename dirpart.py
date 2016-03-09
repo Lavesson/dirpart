@@ -17,7 +17,14 @@ from dirpart import part
 def main():
     parser = argparse.ArgumentParser(
         prog="dirpart",
-        description="Partition files into sub directories")
+        description="Partition files into sub directories",
+        epilog="Generally, dirpart tries to take the first letter " \
+               "of each filename and put them in a directory " \
+               "matching that name. If --max is used, consecutive " \
+               "directories will have a trailing number. For files " \
+               "starting with a dot, a special folder '!misc' is " \
+               "used. The name of this directory can be overriden " \
+               "using the --special flag.")
 
     parser.add_argument(
         "dir", metavar="[in]",
