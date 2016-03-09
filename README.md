@@ -57,3 +57,6 @@ To run the tests, from the root of the repository:
 
     $ python -m t.test_dirpart
 
+## Contributing
+
+Pull requests are more than welcome. If you fix an issue or add a new feature, be sure to include a passing test case.
