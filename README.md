@@ -5,6 +5,11 @@ released under the zlib/png license. I initially created this one solely
 because I needed to grab a bunch of NES roms for my Everdrive n8 and
 move them into subfolders 1-8 and A-Z.
 
+dirpart is released under the zlib/png license. Basically, you can use
+this software in any way you see fit, including commercial applications.
+If you use it as part of something larger, a mention would be
+appreciated (but not necessary)
+
 ## How does it work?
 
     $ ls
