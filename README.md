@@ -24,6 +24,10 @@ appreciated (but not necessary)
 
 ## Common uses
 
+Try `dirpart --help` to see all flags. These examples assume that
+dirpart is symlinked as just 'dirpart'. Otherwise, use the full name
+(dirpart.py) instead:
+
     $ dirpart . -o out/                # Part files into subdirs in out/
                                        # by copying the files
 
