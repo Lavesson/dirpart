@@ -35,13 +35,16 @@ move them into subfolders 1-8 and A-Z.
 ## Installation
 
 * Clone/download/whatever and make sure Python 2.7 is installed
-* Either use the command directly, or symlink:
+* On Linux/UNIX, either use the command directly, or symlink:
 
         $ ln -s /path/to/dirpart.py /usr/bin/dirpart
+
+* On Windows, either use the command directly, or make sure dirpart.py
+  is in your path
 
 ## Running tests
 
 To run the tests, from the root of the repository:
 
-    $ python -m t/test_dirpart
+    $ python -m t.test_dirpart
 
